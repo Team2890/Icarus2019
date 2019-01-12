@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.commands.MiddleButtonPressCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -41,11 +40,10 @@ public class RobotMap {
   public static Joystick leftJoystick;
   public static Joystick rightJoystick;
 
-  public static JoystickButton middleButton;
+  public static JoystickButton middleButtonLeft;
+  public static JoystickButton middleButtonRight;
 
   public static DriveTrainSubsystem driveTrain;
-
-  public static Command middleButtonCommand;
 
   //Port Ids
   public static int leftFrontTalonId = 4;
@@ -56,6 +54,7 @@ public class RobotMap {
   public static int leftJoystickPort = 0;
   public static int rightJoystickPort = 1;
   public static int middleButtonPort = 1;
+
 
   public static void init()
   {
@@ -69,10 +68,9 @@ public class RobotMap {
 
     leftJoystick = new Joystick(leftJoystickPort);
     rightJoystick = new Joystick(rightJoystickPort);
-    middleButton = new JoystickButton(leftJoystick, middleButtonPort);
+    middleButtonLeft = new JoystickButton(leftJoystick, middleButtonPort);
+    middleButtonRight = new JoystickButton(rightJoystick, middleButtonPort);
 
     driveTrain = new DriveTrainSubsystem();
-
-    middleButtonCommand = new MiddleButtonPressCommand();
   }
 }
