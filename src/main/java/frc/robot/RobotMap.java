@@ -8,6 +8,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.MiddleButtonPressCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -30,37 +33,46 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
 
   //Talons
-  public static TalonSRX leftFrontTalon;
-  public static TalonSRX rightFrontTalon;
-  public static TalonSRX leftBackTalon;
-  public static TalonSRX rightBackTalon;
+  public static WPI_TalonSRX leftFrontTalon;
+  public static WPI_TalonSRX rightFrontTalon;
+  public static WPI_TalonSRX leftBackTalon;
+  public static WPI_TalonSRX rightBackTalon;
 
   public static Joystick leftJoystick;
   public static Joystick rightJoystick;
 
+  public static JoystickButton middleButton;
+
   public static DriveTrainSubsystem driveTrain;
 
+  public static Command middleButtonCommand;
+
   //Port Ids
-  public static int leftFrontTalonId = 2;
+  public static int leftFrontTalonId = 4;
   public static int rightFrontTalonId = 5;
   public static int leftBackTalonId = 3;
-  public static int rightBackTalonId = 4; 
+  public static int rightBackTalonId = 2; 
 
-  public static int leftJoystickPort = 2;
-  public static int rightJoystickPort = 0;
+  public static int leftJoystickPort = 0;
+  public static int rightJoystickPort = 1;
+  public static int middleButtonPort = 1;
 
   public static void init()
   {
-    leftFrontTalon = new TalonSRX(leftFrontTalonId);
-    rightFrontTalon = new TalonSRX(rightFrontTalonId);
-    rightBackTalon = new TalonSRX(rightBackTalonId);
-    leftBackTalon = new TalonSRX(leftBackTalonId);
+    leftFrontTalon = new WPI_TalonSRX(leftFrontTalonId);
+    rightFrontTalon = new WPI_TalonSRX(rightFrontTalonId);
+    rightBackTalon = new WPI_TalonSRX(rightBackTalonId);
+    leftBackTalon = new WPI_TalonSRX(leftBackTalonId);
 
-    rightFrontTalon.setInverted(true);
+    //rightFrontTalon.setInverted(true);
+    //leftFrontTalon.setInverted(true);
 
     leftJoystick = new Joystick(leftJoystickPort);
     rightJoystick = new Joystick(rightJoystickPort);
+    middleButton = new JoystickButton(leftJoystick, middleButtonPort);
 
     driveTrain = new DriveTrainSubsystem();
+
+    middleButtonCommand = new MiddleButtonPressCommand();
   }
 }
