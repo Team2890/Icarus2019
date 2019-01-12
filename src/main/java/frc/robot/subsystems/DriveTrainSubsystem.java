@@ -36,47 +36,43 @@ public class DriveTrainSubsystem extends Subsystem {
 
   public void arcadeDrive()
   {
+    //Backwards
     if (RobotMap.leftJoystick.getY() > 0.15)
     {
-      System.out.println("Backwards");
-      System.out.println(RobotMap.leftJoystick.getY());
       RobotMap.leftFrontTalon.set(ControlMode.PercentOutput, RobotMap.leftJoystick.getY());
-      RobotMap.rightFrontTalon.set(ControlMode.PercentOutput, RobotMap.leftJoystick.getY());
+      RobotMap.rightFrontTalon.set(ControlMode.PercentOutput, -RobotMap.leftJoystick.getY());
       RobotMap.leftBackTalon.set(ControlMode.PercentOutput, RobotMap.leftJoystick.getY());
-      RobotMap.rightBackTalon.set(ControlMode.PercentOutput, RobotMap.leftJoystick.getY());
+      RobotMap.rightBackTalon.set(ControlMode.PercentOutput, -RobotMap.leftJoystick.getY());
     }
 
-    
+    //Forwards
     if (RobotMap.leftJoystick.getY() < -0.15)
     {
-      System.out.println("Forwards");
-      System.out.println(RobotMap.leftJoystick.getY());
       RobotMap.leftFrontTalon.set(ControlMode.PercentOutput, RobotMap.leftJoystick.getY());
-      RobotMap.rightFrontTalon.set(ControlMode.PercentOutput, RobotMap.leftJoystick.getY());
+      RobotMap.rightFrontTalon.set(ControlMode.PercentOutput, -RobotMap.leftJoystick.getY());
       RobotMap.leftBackTalon.set(ControlMode.PercentOutput, RobotMap.leftJoystick.getY());
-      RobotMap.rightBackTalon.set(ControlMode.PercentOutput, RobotMap.leftJoystick.getY());
+      RobotMap.rightBackTalon.set(ControlMode.PercentOutput, -RobotMap.leftJoystick.getY());
     }
 
+    //Right
     if (RobotMap.rightJoystick.getX() > 0.15)
     {
-      System.out.println("Right");
-      System.out.println(RobotMap.rightJoystick.getX());
-      RobotMap.leftFrontTalon.set(ControlMode.PercentOutput, RobotMap.rightJoystick.getX());
+      RobotMap.leftFrontTalon.set(ControlMode.PercentOutput, -RobotMap.rightJoystick.getX());
       RobotMap.rightFrontTalon.set(ControlMode.PercentOutput, -RobotMap.rightJoystick.getX());
-      RobotMap.leftBackTalon.set(ControlMode.PercentOutput, RobotMap.rightJoystick.getX());
+      RobotMap.leftBackTalon.set(ControlMode.PercentOutput, -RobotMap.rightJoystick.getX());
       RobotMap.rightBackTalon.set(ControlMode.PercentOutput, -RobotMap.rightJoystick.getX());
     }
 
+    //Left
     if (RobotMap.rightJoystick.getX() < -0.15)
     {
-        System.out.println("Left");
-        System.out.println(RobotMap.rightJoystick.getX());
-        RobotMap.leftFrontTalon.set(ControlMode.PercentOutput, RobotMap.rightJoystick.getX());
+        RobotMap.leftFrontTalon.set(ControlMode.PercentOutput, -RobotMap.rightJoystick.getX());
         RobotMap.rightFrontTalon.set(ControlMode.PercentOutput, -RobotMap.rightJoystick.getX());
-        RobotMap.leftBackTalon.set(ControlMode.PercentOutput, RobotMap.rightJoystick.getX());
+        RobotMap.leftBackTalon.set(ControlMode.PercentOutput, -RobotMap.rightJoystick.getX());
         RobotMap.rightBackTalon.set(ControlMode.PercentOutput, -RobotMap.rightJoystick.getX());
     }
 
+    //Stops movement when either middle button is pressed
     if (RobotMap.middleButtonLeft.get() == true)
     {
       RobotMap.leftFrontTalon.set(ControlMode.PercentOutput, 0);
@@ -84,7 +80,6 @@ public class DriveTrainSubsystem extends Subsystem {
       RobotMap.leftBackTalon.set(ControlMode.PercentOutput, 0);
       RobotMap.rightBackTalon.set(ControlMode.PercentOutput, 0);
     }
-
     if (RobotMap.middleButtonRight.get() == true)
     {
       RobotMap.leftFrontTalon.set(ControlMode.PercentOutput, 0);
@@ -92,21 +87,5 @@ public class DriveTrainSubsystem extends Subsystem {
       RobotMap.leftBackTalon.set(ControlMode.PercentOutput, 0);
       RobotMap.rightBackTalon.set(ControlMode.PercentOutput, 0);
     }
-
-
-    /*if (RobotMap.rightJoystick.getX() > -0.15 && RobotMap.rightJoystick.getX() < 0.15)
-    {
-      RobotMap.leftFrontTalon.set(ControlMode.PercentOutput, 0);
-      RobotMap.rightFrontTalon.set(ControlMode.PercentOutput, 0);
-      RobotMap.leftBackTalon.set(ControlMode.PercentOutput, 0);
-      RobotMap.rightBackTalon.set(ControlMode.PercentOutput, 0);
-    }
-    if (RobotMap.leftJoystick.getY() > -0.15 && RobotMap.leftJoystick.getY() < 0.15)
-    {
-      RobotMap.leftFrontTalon.set(ControlMode.PercentOutput, 0);
-      RobotMap.rightFrontTalon.set(ControlMode.PercentOutput, 0);
-      RobotMap.leftBackTalon.set(ControlMode.PercentOutput, 0);
-      RobotMap.rightBackTalon.set(ControlMode.PercentOutput, 0);
-    }*/
   }
 }
